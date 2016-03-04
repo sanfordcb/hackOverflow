@@ -12,6 +12,7 @@ angular.module('hackoverflow.posts', [
   $scope.numberOfAnswers = {};
   $scope.forum = ForumService.currentForum.model.forum;
   $scope.TimeService = TimeService;
+  $scope.forumName = '';
 
   $scope.getPosts = function getPosts(forum) {
     // TODO: need to pass in forum to Posts.getPosts()
@@ -27,9 +28,16 @@ angular.module('hackoverflow.posts', [
     });
   };
 
-  $scope.getForums = function getForums(forum) {
+  $scope.getForums = function getForums(data) {
     Posts.getForums().then(function (data) {
-      $scope.forums = data.data.sort();
+      $scope.forums = data.sort();
+    });
+  };
+
+  $scope.newForum = function newForum(forumName) {
+    Posts.newForum(forumName).then(function () {
+      $scope.forumName = '';
+      $scope.getForums();
     });
   };
 

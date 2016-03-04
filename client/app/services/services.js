@@ -7,12 +7,27 @@ angular.module('hackoverflow.services', [])
   var getForums = function() {
     return $http({
       method: 'GET',
-      url: 'app/config/forums.json'
+      url: 'api/forum/'
+    })
+    .then(function ( response ){
+      var forums = response.data.map(function(forum) {
+        return forum.name;
+      });
+      return forums;
+    });
+  };
+
+  var newForum = function(forumName) {
+    var forum = {name: forumName};
+    return $http({
+      method: 'POST', 
+      url: 'api/forum',
+      data: forum
     })
     .then(function ( response ){
       return response;
-    });
-  };
+    })
+  }
 
   var getPosts = function(forum) {
     return $http({
@@ -68,6 +83,7 @@ angular.module('hackoverflow.services', [])
 
   return {
     getForums: getForums,
+    newForum: newForum,
     getPosts: getPosts,
     createPost: createPost,
     editPost: editPost,
