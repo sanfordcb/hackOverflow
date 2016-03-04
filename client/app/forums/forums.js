@@ -8,12 +8,15 @@ angular.module('hackoverflow.forums', [
 })
 
 .controller('ForumsController',
-  function ($scope, $stateParams, $state, Posts, Answers, TimeService, ForumService) {
-    $scope.switchForum = function switchForum(forum) {
-      $scope.forum = forum;
-      ForumService.currentForum.model.forum = forum;
-      $scope.getForums();
-    };
+  function ($scope, $rootScope, $stateParams, $state, Posts, Answers, TimeService, ForumService) {
+    $scope.forum = $state.params.forum || 'Select Forum...'
+    $scope.forumsClass = $state.current.name === 'forums' ? 'middle' : 'sidebar';
+
+    $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+      $scope.forumsClass = toState.name === 'forums' ? 'middle' : 'sidebar';
+      $scope.forum = toParams.forum || 'Select Forum...';
+    })
+
     $scope.getForums = function getForums(forum) {
       Posts.getForums().then(function (data) {
         $scope.forums = data.data.sort();

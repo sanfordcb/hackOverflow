@@ -55,12 +55,11 @@ angular.module('hackoverflow', [
       templateUrl: 'app/forums/forums.html',
       controller: 'ForumsController'
     })
-    .state('posts', {
-      params: {'forum': 'Angular'},
-      url: '/',
-      templateUrl: 'app/posts/posts.html',
-      controller: 'PostsController'
-    })
+      .state('forums.posts', {
+        url: '/:forum',
+        templateUrl: 'app/posts/posts.html',
+        controller: 'PostsController'
+      })
     .state('add-post', {
       url: '/add-post',
       templateUrl: 'app/posts/add-post.html',

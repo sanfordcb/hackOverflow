@@ -2,13 +2,25 @@
   position: absolute;
   float: right;
   width: 25%;
-  top: 0;
   right: 0;
-  margin: 0;
+  margin: auto;
   text-align: right;
 }
 
 .sidebar p {
+  margin: 0;
+  font-weight: 400;
+}
+
+.middle {
+  position: absolute;
+  width: 25%;
+  right: 40%;
+  margin: auto;
+  text-align: center;
+}
+
+.middle p {
   margin: 0;
   font-weight: 400;
 }
