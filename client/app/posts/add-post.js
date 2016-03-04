@@ -12,6 +12,7 @@ angular.module('hackoverflow.add-post', [
   $scope.body = '';
   $scope.forums = [];
   $scope.forum = ForumService.currentForum.model.forum;
+  $scope.tags = [];
 
   $scope.getForums = function getForums() {
     Posts.getForums().then(function (data) {
@@ -22,7 +23,7 @@ angular.module('hackoverflow.add-post', [
   
   $scope.submit = function () {
     Posts.createPost($scope.title, $scope.body, $scope.forum,
-      $rootScope.user, new Date());
+      $rootScope.user, new Date(), $scope.tags);
     $state.go('posts', { 'forum': $scope.forum });
   };
   

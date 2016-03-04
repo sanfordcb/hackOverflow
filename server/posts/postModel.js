@@ -15,7 +15,9 @@ var PostSchema = new mongoose.Schema({
 		created: {
 			type: Date,
 			default: Date.now
-		}
+		}, 
+	tags: Array, 
+	// In the format [{ "text" : "tag1" }, { "text" : "tag2" }]
 	}]
 });
 

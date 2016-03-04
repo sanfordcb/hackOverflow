@@ -39,19 +39,23 @@ angular.module('hackoverflow.services', [])
       });
     };
 
-  var createPost = function(title, body, forum, author, created) {
+  var createPost = function(title, body, forum, author, created, tags) {
     var newPost = {
       title: title,
       body: body,
       forum: forum,
       author: author,
-      created: created
+      created: created,
+      tags: tags
     };
     console.log('create post: ', newPost);
     return $http({
       method: 'POST',
       url: '/api/post',
       data: newPost
+    })
+    .then(function(response) {
+      return response;
     });
   };
 

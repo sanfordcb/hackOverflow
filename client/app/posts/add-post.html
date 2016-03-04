@@ -16,10 +16,15 @@
                 class="boxsizingBorder"
                 placeholder="Feel free to elaborate"></textarea>
 
+    <tags-input ng-model="tags"
+                class="boxsizingBorder"
+                add-on-space="true"
+                placeholder="Tag your question"></tags-input>
+
       <select   ng-model="forum"
                 ng-init="somethingHere = options[0]"
                 ng-options="forum for forum in forums"></select>
-                
+
       <button   type="submit"
                 ng-disabled="addPostForm.$invalid"
                 ng-Class="(title && forum !== 'Please choose a forum') ?
