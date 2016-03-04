@@ -39,14 +39,15 @@ angular.module('hackoverflow.services', [])
       });
     };
 
-  var createPost = function(title, body, forum, author, created, tags) {
+  var createPost = function(title, body, forum, author, created, tags, votes) {
     var newPost = {
       title: title,
       body: body,
       forum: forum,
       author: author,
       created: created,
-      tags: tags
+      tags: tags,
+      votes: votes
     };
     console.log('create post: ', newPost);
     return $http({
@@ -86,13 +87,23 @@ angular.module('hackoverflow.services', [])
     });
   };
 
+  var alterVotes = function(vote, total){
+    if(vote) {
+      total++;
+    } else {
+      total--;
+    }
+    return total;
+  }
+
   return {
     getForums: getForums,
     newForum: newForum,
     getPosts: getPosts,
     createPost: createPost,
     editPost: editPost,
-    deletePost: deletePost
+    deletePost: deletePost,
+    alterVotes: alterVotes
   };
 })
 
