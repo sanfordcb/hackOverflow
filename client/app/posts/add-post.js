@@ -21,12 +21,12 @@ angular.module('hackoverflow.add-post', [
       $scope.forums.unshift('Please choose a forum');
     });
   };
-  
+
   $scope.submit = function () {
     Posts.createPost($scope.title, $scope.body, $scope.forum,
       $rootScope.user, new Date(), $scope.tags, $scope.votes);
     $state.go('posts', { 'forum': $scope.forum });
   };
-  
+
   $scope.getForums();
 });
