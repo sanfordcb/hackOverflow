@@ -3,7 +3,7 @@ angular.module('hackoverflow', [
   'hackoverflow.posts',
   'hackoverflow.add-post',
   'hackoverflow.edit-post',
-  'hackoverflow.comments',
+  'hackoverflow.answers',
   'ui.router',
   'ngRoute',
   'ngSanitize',
@@ -50,26 +50,26 @@ angular.module('hackoverflow', [
   $stateProvider
     .state('posts', {
       params: {'forum': 'Angular'},
-      // url: '/',
+      url: '/',
       templateUrl: 'app/posts/posts.html',
       controller: 'PostsController'
     })
     .state('add-post', {
-      // url: '/add-post',
+      url: '/add-post',
       templateUrl: 'app/posts/add-post.html',
       controller: 'AddPostController'
     })
     .state('edit-post', {
       params: {'post': null},
-      // url: '/edit-post',
+      url: '/edit-post',
       templateUrl: 'app/posts/add-post.html',
       controller: 'EditPostController'
     })
-    .state('comments', {
+    .state('answers', {
       params: {'post': null},
-      // url: '/comments',
-      templateUrl: 'app/comments/comments.html',
-      controller: 'CommentsController'
+      url: '/answers',
+      templateUrl: 'app/answers/answers.html',
+      controller: 'AnswersController'
     })
     .state('signin', {
       url: '/',
@@ -77,7 +77,7 @@ angular.module('hackoverflow', [
       controller: 'AuthController'
     })
     .state('signup', {
-      // url: '/signup',
+      url: '/signup',
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
     });

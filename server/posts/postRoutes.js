@@ -1,20 +1,20 @@
 var postController = require('./postController.js');
 var Post       = require('./postModel.js');
-var Comment    = require('../comments/commentModel.js');
+var Answer    = require('../answers/answerModel.js');
 
 
 module.exports = function (app) {
-// Map logic to route parameter 'comment'
+// Map logic to route parameter 'answer'
 app.param('post', function (req, res, next, id) {
 	var query = Post.findById(id);
 
 	query.exec(function (err, post) {
-		if (err) { 
-      return next(err); 
+		if (err) {
+      return next(err);
     }
 
-		if (!post) { 
-      return next(new Error("can't find post")); 
+		if (!post) {
+      return next(new Error("can't find post"));
     }
 
 		req.post = post;
@@ -22,19 +22,19 @@ app.param('post', function (req, res, next, id) {
 	});
 });
 
-app.param('comment', function (req, res, next, id) {
-	var query = Comment.findById(id);
+app.param('answer', function (req, res, next, id) {
+	var query = Answer.findById(id);
 
-	query.exec(function (err, comment) {
-		if (err) { 
+	query.exec(function (err, answer) {
+		if (err) {
       return next(err);
     }
 
-		if (!comment) { 
-      return next(new Error("can't find comment")); 
+		if (!answer) {
+      return next(new Error("can't find answer"));
     }
 
-		req.comment = comment;
+		req.answer = answer;
 		return next();
 	});
 });

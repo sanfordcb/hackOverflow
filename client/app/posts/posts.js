@@ -6,10 +6,10 @@ angular.module('hackoverflow.posts', [
 .config(function ($httpProvider, $urlRouterProvider, $stateProvider) {
 })
 
-.controller('PostsController', function ($scope, $stateParams, $state, Posts, Comments, TimeService, ForumService) {
+.controller('PostsController', function ($scope, $stateParams, $state, Posts, Answers, TimeService, ForumService) {
   $scope.posts = [];
   $scope.forums = [];
-  $scope.numberOfComments = {};
+  $scope.numberOfAnswers = {};
   $scope.forum = ForumService.currentForum.model.forum;
   $scope.TimeService = TimeService;
 
@@ -17,12 +17,12 @@ angular.module('hackoverflow.posts', [
     // TODO: need to pass in forum to Posts.getPosts()
     Posts.getPosts('').then(function (data) {
       $scope.posts = data.data;
-      // this creates an object $scope.numberOfComments that
-      // keeps track of each posts number of comments. not
+      // this creates an object $scope.numberOfAnswers that
+      // keeps track of each posts number of Answers. not
       // ideal, but works. need to refactor how we go
-      // about determining the number of comments.
+      // about determining the number of Answers.
       for (var i = 0; i < $scope.posts.length; i++) {
-        $scope.posts[i].numberOfComments = $scope.getNumberOfComments($scope.posts[i]._id);
+        $scope.posts[i].numberOfAnswers = $scope.getNumberOfAnswers($scope.posts[i]._id);
       }
     });
   };
@@ -39,9 +39,9 @@ angular.module('hackoverflow.posts', [
     $scope.getForums();
   };
 
-  $scope.getNumberOfComments = function getNumberOfComments(postId) {
-    Comments.getNumberOfComments(postId).then(function (data) {
-      $scope.numberOfComments[postId] = data.data;
+  $scope.getNumberOfAnswers = function getNumberOfAnswers(postId) {
+    Answers.getNumberOfAnswers(postId).then(function (data) {
+      $scope.numberOfAnswers[postId] = data.data;
     });
   };
 
