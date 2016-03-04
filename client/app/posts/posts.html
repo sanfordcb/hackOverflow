@@ -8,7 +8,7 @@
     filter: { forum: forum }">
 
     <a ui-sref="answers({post: post})">
-      <h2 ng-bind="post.title"></h2>
+      <h2 ng-bind="post.title"></h2></a>
       <p>
         <span ng-bind="post.author"></span> -
         {{ TimeService.relativeDate(post.created) }}

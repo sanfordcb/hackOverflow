@@ -15,6 +15,7 @@ angular.module('hackoverflow.edit-post', [
   $scope.title = $scope.post.title;
   $scope.body = $scope.post.body;
   $scope.forum = $scope.post.forum;
+  $scope.tags = $scope.post.tags;
 
   $scope.getForums = function getForums() {
     Posts.getForums().then(function(data) {
@@ -25,7 +26,7 @@ angular.module('hackoverflow.edit-post', [
 
   $scope.submit = function() {
     Posts.editPost($scope.postId, $scope.title,
-      $scope.body, $scope.forum, $scope.author, new Date());
+      $scope.body, $scope.forum, $scope.author, new Date(), $scope.tags);
     $state.go('posts', { 'forum': $scope.forum });
   };
 

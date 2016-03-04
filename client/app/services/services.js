@@ -60,14 +60,15 @@ angular.module('hackoverflow.services', [])
   };
 
   var editPost = function(postId, title, body,
-    forum, author, created) {
+    forum, author, created, tags) {
     var editedPost = {
       postId: postId,
       title: title,
       body: body,
       forum: forum,
       author: author,
-      created: created
+      created: created, 
+      tags: tags,
     };
     console.log('edited post: ', editedPost);
     return $http({
@@ -131,7 +132,7 @@ angular.module('hackoverflow.services', [])
     return $http({
       method: 'POST',
       url: '/api/post/' + postId + '/answers',
-      data: neAnswerw
+      data: newAnswer
     });
   };
 
