@@ -35,7 +35,7 @@ angular.module('hackoverflow', [
 
   // this ensures that application fully reboots and
   // defaults to main page if user reloads a page.
-  $location.path("/");
+  // $location.path("/");
 })
 
 .config(function($httpProvider, $urlRouterProvider,

@@ -19,7 +19,7 @@ mongoose.connect(dbURI);
  mongoose.connection.on('connected', function () {
    console.log('Mongoose connected to ' + dbURI);
  });
- 
+
  // logs when disconnected
  mongoose.connection.on('disconnected', function () {
    console.log('Mongoose disconnected');
@@ -43,6 +43,14 @@ require('./config/middleware.js')(app, express);
 
  //app.use(express.static(__dirname + '/../client'));
 
+
+// This redirects any GET requests that aren't for '/' or our the routes defined in
+// middleware.js to the home-page, letting the router on our SPA front-end handle it.
+// This way, trying to refresh a specific page of the app won't
+// end in a "cannot GET '/part/of/app'" error
+app.get('*', function (req, res){
+  res.sendFile(path.join(__dirname + '../../client/index.html'));
+});
 
 var port = process.env.PORT || 8000;
 
