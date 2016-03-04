@@ -135,8 +135,7 @@ angular.module('hackoverflow.services', [])
       data: newAnswer
     });
   };
-
-<<<<<<< 2c21c7f17f6c632a0df83462cd091e29e4159c5e
+  
   // no edit answers for now. v2.
   // var editAnswer = function(answerId) {
   //   return $http({
@@ -145,23 +144,20 @@ angular.module('hackoverflow.services', [])
   //     data:answer
   //   });
   // };
-=======
   // no edit comments for now. v2.
-  var editComment = function(commentId, body, author, created) {
-    var editedComment = {
-      commentId: commentId,
-      body: body,
-      author: author,
-      created: created
+  
+  var editAnswer = function(answer) {
+    var editedAnswer = {
+      answerId: answer._Id,
+      body: answer.body
     };
-    console.log('editedComment' + editedComment);
+    console.log('editedAnswer' + editedAnswer);
     return $http({
       method: 'PUT',
-      url: '/api/comments/' + commentId,
-      data: editedComment
+      url: '/api/answers/' + answerId,
+      data: editedAnswer
     });
   };
->>>>>>> Add editComment method to Comments factory in services.js,
 
   var deleteAnswer = function(postId, answerId) {
     return $http({
@@ -171,19 +167,11 @@ angular.module('hackoverflow.services', [])
   };
 
   return {
-<<<<<<< 2c21c7f17f6c632a0df83462cd091e29e4159c5e
     getAnswers: getAnswers,
     createAnswer: createAnswer,
     getNumberOfAnswers: getNumberOfAnswers,
-    // editAnswer: editAnswer,
+    editAnswer: editAnswer,
     deleteAnswer: deleteAnswer
-=======
-    getComments: getComments,
-    createComment: createComment,
-    getNumberOfComments: getNumberOfComments,
-    editComment: editComment,
-    deleteComment: deleteComment
->>>>>>> Add editComment method to Comments factory in services.js,
   };
 
 })

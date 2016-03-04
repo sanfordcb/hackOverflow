@@ -25,12 +25,12 @@ angular.module('hackoverflow.answers', [
   $scope.getAnswers = function getAnswers() {
     Answers.getAnswers($scope.post._id).then(function(result) {
       $scope.answers = result.data;
-    });
   };
 
-  $scope.editAnswer = function editComment() {
-    Answers.editAnswer(answerId, body, author, created);
-  }
+  $scope.editAnswer = function editAnswer(answer) {
+    Answers.editAnswer(answer);
+    $scope.getAnswers();
+  };
 
   $scope.deleteAnswer = function deleteAnswer(postId, answerId) {
     Answers.deleteAnswer(postId, answerId);

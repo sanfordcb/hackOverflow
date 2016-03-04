@@ -29,6 +29,16 @@
     <br/><br/>
   </div>
 
+  <!-- <div class="answer" ng-repeat="answer in answers | filter:searchFor">
+        <p ng-click="editable = 'answer.body'" ng-hide="editable === 'answer.body'">{{answer.body}}</p>
+        <span ng-show="editable === 'answer.body'">
+          <form class='form-inline' ng-submit='editAnswer'>
+            <input type='text' name='answer.body' ng:required ng-model='answer.body'>
+            <button class='edit/delete' ng-click="editable = ''">Edit</button>
+            </form>
+          </span> -->
+        <!-- <p ng-bind="answer.body"></p> -->
+
   <div>
       <div class="answer" ng-repeat="answer in answers | filter:searchFor">
         <p ng-bind="answer.body"></p>
