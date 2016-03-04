@@ -7,10 +7,13 @@ angular.module('hackoverflow.services', [])
   var getForums = function() {
     return $http({
       method: 'GET',
-      url: 'app/config/forums.json'
+      url: 'api/forum/'
     })
     .then(function ( response ){
-      return response;
+      var forums = response.data.map(function(forum) {
+        return forum.name;
+      });
+      return forums;
     });
   };
 

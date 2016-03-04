@@ -27,9 +27,9 @@ angular.module('hackoverflow.posts', [
     });
   };
 
-  $scope.getForums = function getForums(forum) {
+  $scope.getForums = function getForums(data) {
     Posts.getForums().then(function (data) {
-      $scope.forums = data.data.sort();
+      $scope.forums = data.sort();
     });
   };
 
