@@ -26,12 +26,12 @@ module.exports = {
 
   deleteForum: function (req, res, next) {
     Forum.remove({
-      name: req.params.forum
+      _id: req.params.forum_id
     }, function(err, forum) {
       if (err) {
         return next(err);
       }
-      res.json('deleted', forum);
+      return res.json('deleted', forum);
     });
   }
 
