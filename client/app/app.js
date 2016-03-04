@@ -1,5 +1,6 @@
 angular.module('hackoverflow', [
   'hackoverflow.services',
+  'hackoverflow.forums',
   'hackoverflow.posts',
   'hackoverflow.add-post',
   'hackoverflow.edit-post',
@@ -49,6 +50,11 @@ angular.module('hackoverflow', [
 
   $urlRouterProvider.otherwise('signin');
   $stateProvider
+    .state('forums', {
+      url: '/forums',
+      templateUrl: 'app/forums/forums.html',
+      controller: 'ForumsController'
+    })
     .state('posts', {
       params: {'forum': 'Angular'},
       url: '/',

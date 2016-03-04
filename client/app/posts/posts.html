@@ -16,26 +16,4 @@
       </p>
   </div>
 
-  <div class="sidebar">
-    <div class="search">
-      <input ng-model="searchFor" placeholder="Search" />
-    </div>
-
-    <br />
-
-    <div class="forum">
-      {{ forum }}
-    </div>
-
-    <form class="addForum" ng-submit="newForum(forumName)">
-      <input ng-model="forumName"placeholder="Add a forum..." />
-    </form>
-
-    <div class="forums" ng-repeat="forum in forums">
-      <p>
-        <a ng-click="switchForum(forum)">{{ forum }}</a>
-      </p>
-    </div>
-
-  </div>
 </div>
