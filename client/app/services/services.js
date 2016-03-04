@@ -17,6 +17,18 @@ angular.module('hackoverflow.services', [])
     });
   };
 
+  var newForum = function(forumName) {
+    var forum = {name: forumName};
+    return $http({
+      method: 'POST', 
+      url: 'api/forum',
+      data: forum
+    })
+    .then(function ( response ){
+      return response;
+    })
+  }
+
   var getPosts = function(forum) {
     return $http({
       method: 'GET',
@@ -71,6 +83,7 @@ angular.module('hackoverflow.services', [])
 
   return {
     getForums: getForums,
+    newForum: newForum,
     getPosts: getPosts,
     createPost: createPost,
     editPost: editPost,
