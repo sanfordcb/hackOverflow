@@ -7,6 +7,7 @@ angular.module('hackoverflow', [
   'ui.router',
   'ngRoute',
   'ngSanitize',
+  'ngTagsInput',
   'satellizer',
   'hackoverflow.auth'
 ])

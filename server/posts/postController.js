@@ -26,12 +26,13 @@ module.exports = {
     post.title = request.body.title;
     post.author = request.body.author;
     post.body = request.body.body;
-
+    post.tags = request.body.tags;
+    console.log('post tags', post.tags);
     post.save(function(err, post) {
      if(err) {
       return next(err);
     }
-
+    console.log('post', post);
      response.json(post);
    });
  },
