@@ -1,12 +1,12 @@
 <div ng-include="'app/header.html'"></div>
 
-<div id="comments-container">
+<div id="answers-container">
 
-  <div class="search comments-search">
+  <div class="search answers-search">
     <input ng-model="searchFor" placeholder="Search"/>
   </div>
 
-  <div class="comments-post">
+  <div class="answers-post">
     <span class="post-forum"> {{ post.forum }} </span>
     <h2 ng-bind="post.title"></h2>
     <p ng-bind="post.body"></p>
@@ -14,7 +14,7 @@
     <p class="info">
       <span ng-bind="post.author"></span> -
       {{ TimeService.relativeDate(post.created) }}
-      <span class="num-comments"> {{ comments.length }} Comment {{ + comments.length !== 1 ? 's' : '' }} </span>
+      <span class="num-answers"> {{ answers.length }} Answer {{ + answers.length !== 1 ? 's' : '' }} </span>
     </p>
 
     <div ng-if="theUser === post.author">
@@ -27,30 +27,30 @@
   </div>
 
   <div>
-      <div class="comment" ng-repeat="comment in comments | filter:searchFor">
-        <p ng-bind="comment.body"></p>
-        <p class="info"><span ng-bind="comment.author"></span> -
-          {{ TimeService.relativeDate(comment.created) }}
+      <div class="answer" ng-repeat="answer in answers | filter:searchFor">
+        <p ng-bind="answer.body"></p>
+        <p class="info"><span ng-bind="answer.author"></span> -
+          {{ TimeService.relativeDate(answer.created) }}
         </p>
 
-        <div ng-if="theUser === comment.author">
-          <span class="edit-delete" ng-click="deleteComment(post._id, comment._id)">DELETE</span>
+        <div ng-if="theUser === answer.author">
+          <span class="edit-delete" ng-click="deleteAnswer(post._id, answer._id)">DELETE</span>
         </div>
       </div>
   </div>
 
-  <div class="comment-form">
-    <form name="addCommentForm"
+  <div class="answer-form">
+    <form name="addAnswerForm"
           ng-submit="submit()">
-        <textarea ng-model="newCommentBody"
+        <textarea ng-model="newAnswerBody"
                   class="boxsizingBorder"
                   required
                   placeholder="The floor is yours."></textarea>
         <button type="submit"
-                ng-disabled="addCommentForm.$invalid"
-                ng-Class="(newCommentBody) ? 'buttonEnabled' : 'buttonDisabled'">
-                Post a Comment </button>
+                ng-disabled="addAnswerForm.$invalid"
+                ng-Class="(newAnswerBody) ? 'buttonEnabled' : 'buttonDisabled'">
+                Post an Answer </button>
     </form>
   </div>
-  
+
 </div>

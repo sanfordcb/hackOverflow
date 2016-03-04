@@ -9,14 +9,14 @@ var PostSchema = new mongoose.Schema({
 		type: Date,
 		default: Date.now
 	},
-	comments: [{
+	answers: [{
 		author: String,
 		body:String,
 		created: {
 			type: Date,
 			default: Date.now
 		}
-	}]  
+	}]
 });
 
 module.exports = mongoose.model('Post', PostSchema);

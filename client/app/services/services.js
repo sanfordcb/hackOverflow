@@ -75,68 +75,68 @@ angular.module('hackoverflow.services', [])
   };
 })
 
-// COMMENTS
+// ANSWERS
 
-.factory('Comments', function ( $http ) {
+.factory('Answers', function ( $http ) {
 
-  var getComments = function(postId) {
+  var getAnswers = function(postId) {
     console.log(postId + " is postId");
     return $http({
       method: 'GET',
-      url: '/api/post/' + postId + '/comments'
+      url: '/api/post/' + postId + '/answers'
     })
     .then(function(response) {
       return response;
       });
     };
 
-  var getNumberOfComments = function(postId) {
+  var getNumberOfAnswers = function(postId) {
     return $http({
       method: 'GET',
-      url: '/api/post/' + postId + '/commentsNumber'
+      url: '/api/post/' + postId + '/answersNumber'
     })
     .then(function(response) {
       return response;
     });
   };
 
-  var createComment = function(postId, body, author, created) {
-    var newComment = {
+  var createAnswer = function(postId, body, author, created) {
+    var newAnswer = {
       postId: postId,
       body: body,
       author: author,
       created: created
     };
-    console.log('new comment: ', newComment);
+    console.log('new answer: ', newAnswer);
     return $http({
       method: 'POST',
-      url: '/api/post/' + postId + '/comments',
-      data: newComment
+      url: '/api/post/' + postId + '/answers',
+      data: neAnswerw
     });
   };
 
-  // no edit comments for now. v2.
-  // var editComment = function(commentId) {
+  // no edit answers for now. v2.
+  // var editAnswer = function(answerId) {
   //   return $http({
   //     method: 'PUT',
-  //     url: '/api/comments/' + commentId,
-  //     data: comment
+  //     url: '/api/answers/' + answerId,
+  //     data:answer
   //   });
   // };
 
-  var deleteComment = function(postId, commentId) {
+  var deleteAnswer = function(postId, answerId) {
     return $http({
       method: 'DELETE',
-      url: '/api/post/' + postId + '/comments/' + commentId
+      url: '/api/post/' + postId + '/answers/' + answerId
     });
   };
 
   return {
-    getComments: getComments,
-    createComment: createComment,
-    getNumberOfComments: getNumberOfComments,
-    // editComment: editComment,
-    deleteComment: deleteComment
+    getAnswers: getAnswers,
+    createAnswer: createAnswer,
+    getNumberOfAnswers: getNumberOfAnswers,
+    // editAnswer: editAnswer,
+    deleteAnswer: deleteAnswer
   };
 
 })

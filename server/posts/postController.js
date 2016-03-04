@@ -1,5 +1,5 @@
 var Post       = require('./postModel.js');
-var Comment    = require('../comments/commentModel.js');
+var Answer    = require('../answers/answerModel.js');
 
 module.exports = {
   // gets all posts
@@ -15,7 +15,7 @@ module.exports = {
 
   // gets a single post
   getPost: function (req, res) {
-    req.post.populate('comment', function (err, post) {
+    req.post.populate('answer', function (err, post) {
       res.json(post);
    });
  },
@@ -56,10 +56,10 @@ module.exports = {
     });
 
   },
-  // deletes post and it comment children
+  // deletes post and it answer children
   deletePost: function (request, response, next) {
-   request.post.comments.forEach(function (id) {
-    Comment.remove({
+   request.post.answers.forEach(function (id) {
+    Answer.remove({
       _id: id
      }, function (err) {
       if (err) {
