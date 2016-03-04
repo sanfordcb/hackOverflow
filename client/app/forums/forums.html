@@ -1,7 +1,6 @@
-<div ng-include="'app/header.html'"></div>
 
 <div id="forums-container">
-  <div class="sidebar">
+  <div class="{{forumsClass}}">
     <div class="search">
       <input ng-model="searchFor" placeholder="Search" />
     </div>
@@ -14,9 +13,10 @@
 
     <div class="forums" ng-repeat="forum in forums">
       <p>
-        <a ng-click="switchForum(forum)">{{ forum }}</a>
+        <a ui-sref="forums.posts({forum:forum})">{{ forum }}</a>
       </p>
     </div>
 
   </div>
 </div>
+<ui-view></ui-view>
