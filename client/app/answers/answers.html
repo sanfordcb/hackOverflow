@@ -10,6 +10,10 @@
     <span class="post-forum"> {{ post.forum }} </span>
     <h2 ng-bind="post.title"></h2>
     <p ng-bind="post.body"></p>
+    <!-- Tags -->
+    <div class="answer-post-tags" ng-repeat="tag in post.tags">
+      <span><u>{{tag.text}}</u></span>
+    </div>
 
     <p class="info">
       <span ng-bind="post.author"></span> -
