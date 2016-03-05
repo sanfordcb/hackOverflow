@@ -8,11 +8,8 @@ angular.module('hackoverflow.posts', [
 
 .controller('PostsController', function ($scope, $stateParams, $state, Posts, Answers, TimeService, ForumService) {
   $scope.posts = [];
-  $scope.forums = [];
   $scope.numberOfAnswers = {};
-  $scope.forum = ForumService.currentForum.model.forum;
   $scope.TimeService = TimeService;
-  $scope.forumName = '';
 
   $scope.getPosts = function getPosts(forum) {
     // TODO: need to pass in forum to Posts.getPosts()
@@ -28,31 +25,11 @@ angular.module('hackoverflow.posts', [
     });
   };
 
-  $scope.getForums = function getForums(data) {
-    Posts.getForums().then(function (data) {
-      $scope.forums = data.sort();
-    });
-  };
-
-  $scope.newForum = function newForum(forumName) {
-    Posts.newForum(forumName).then(function () {
-      $scope.forumName = '';
-      $scope.getForums();
-    });
-  };
-
-  $scope.switchForum = function switchForum(forum) {
-    $scope.forum = forum;
-    ForumService.currentForum.model.forum = forum;
-    $scope.getForums();
-  };
-
   $scope.getNumberOfAnswers = function getNumberOfAnswers(postId) {
     Answers.getNumberOfAnswers(postId).then(function (data) {
       $scope.numberOfAnswers[postId] = data.data;
     });
   };
 
-  $scope.getPosts($scope.forum);
-  $scope.getForums();
+  $scope.getPosts($stateParams.forum);
 });

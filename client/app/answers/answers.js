@@ -7,18 +7,24 @@ angular.module('hackoverflow.answers', [
 })
 
 .controller('AnswersController',
-  function ($scope, $rootScope, $stateParams, $state, Answers,
-    Posts, TimeService) {
+  function ($scope, $rootScope, $stateParams, $state, Answers, Posts, TimeService) {
   $scope.answers = [];
-  $scope.post = $stateParams.post;
-  $scope.answer = $stateParams.answer;
+  $scope.post = {};
+  $scope.postId = $stateParams.postId;
   $scope.newAnswerBody = '';
   $scope.theUser = $rootScope.user;
   $scope.TimeService = TimeService;
 
+  $scope.getData = function getData(postId) {
+    Posts.getPosts(postId).then(function(result) {
+      $scope.post = result.data;
+      $scope.getAnswers();
+    })
+  }
+
   $scope.getAnswers = function getAnswers() {
-    Answers.getAnswers($scope.post._id).then(function(data) {
-      $scope.answers = data.data;
+    Answers.getAnswers($scope.post._id).then(function(result) {
+      $scope.answers = result.data;
     });
   };
 
@@ -29,7 +35,7 @@ angular.module('hackoverflow.answers', [
 
   $scope.deletePost = function deletePost(postId) {
     Posts.deletePost(postId);
-    $state.go('posts');
+    $state.go('forums.posts', {forum: $stateParams.forum});
   };
 
   $scope.submit = function () {
@@ -38,5 +44,5 @@ angular.module('hackoverflow.answers', [
     $scope.getAnswers();
   };
 
-  $scope.getAnswers();
+  $scope.getData($scope.postId);
 });

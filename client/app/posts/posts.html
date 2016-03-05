@@ -1,5 +1,3 @@
-<div ng-include="'app/header.html'"></div>
-
 <div id="posts-container">
 
   <div class="posts" ng-repeat="post in posts |
@@ -7,35 +5,14 @@
     filter: searchFor |
     filter: { forum: forum }">
 
-    <a ui-sref="answers({post: post})">
-      <h2 ng-bind="post.title"></h2></a>
-      <p>
-        <span ng-bind="post.author"></span> -
-        {{ TimeService.relativeDate(post.created) }}
-        <span class="num-answers"> {{ numberOfAnswers[post._id] }} Answer{{ + numberOfAnswers[post._id] !== 1 ? 's' : '' }}</span>
-      </p>
+    <a ui-sref="post({forum: forum, postId: post._id})">
+      <h2 ng-bind="post.title"></h2>
+    </a>
+    <p>
+      <span ng-bind="post.author"></span> -
+      {{ TimeService.relativeDate(post.created) }}
+      <span class="num-answers"> {{ numberOfAnswers[post._id] }} Answer{{ + numberOfAnswers[post._id] !== 1 ? 's' : '' }}</span>
+    </p>
   </div>
 
-  <div class="sidebar">
-    <div class="search">
-      <input ng-model="searchFor" placeholder="Search" />
-    </div>
-
-    <br />
-
-    <div class="forum">
-      {{ forum }}
-    </div>
-
-    <form class="addForum" ng-submit="newForum(forumName)">
-      <input ng-model="forumName"placeholder="Add a forum..." />
-    </form>
-
-    <div class="forums" ng-repeat="forum in forums">
-      <p>
-        <a ng-click="switchForum(forum)">{{ forum }}</a>
-      </p>
-    </div>
-
-  </div>
 </div>

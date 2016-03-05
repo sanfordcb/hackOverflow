@@ -1,0 +1,22 @@
+
+<div id="forums-container">
+  <div class="{{forumsClass}}">
+    <div class="search">
+      <input ng-model="searchFor" placeholder="Search" />
+    </div>
+
+    <br />
+
+    <div class="forum">
+      {{ forum }}
+    </div>
+
+    <div class="forums" ng-repeat="forum in forums">
+      <p>
+        <a ui-sref="forums.posts({forum:forum})">{{ forum }}</a>
+      </p>
+    </div>
+
+  </div>
+</div>
+<ui-view></ui-view>
