@@ -58,10 +58,10 @@ module.exports = {
   },
 
   // TODO
-  getAnswer: function (request, response) {
+  editAnswer: function (request, response) {
     Answer.findOneAndUpdate(
-      {_id: request.params.answerId},
-      {body: request.params.body},
+      {_id: request.params.answer},
+      {body: request.body.body},
       {new: true},
       function(err, answer) {
         if(err) {

@@ -27,8 +27,9 @@ angular.module('hackoverflow.answers', [
       $scope.answers = result.data;
   };
 
-  $scope.editAnswer = function editAnswer(answer) {
-    Answers.editAnswer(answer);
+  $scope.editAnswer = function editAnswer(postId, answer) {
+    console.log(postId, answer);
+    Answers.editAnswer(postId, answer);
     $scope.getAnswers();
   };
 

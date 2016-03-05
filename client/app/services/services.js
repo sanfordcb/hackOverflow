@@ -146,15 +146,15 @@ angular.module('hackoverflow.services', [])
   // };
   // no edit comments for now. v2.
   
-  var editAnswer = function(answer) {
+  var editAnswer = function(postId, answer) {
     var editedAnswer = {
-      answerId: answer._Id,
+      answerId: answer._id,
       body: answer.body
     };
     console.log('editedAnswer' + editedAnswer);
     return $http({
       method: 'PUT',
-      url: '/api/answers/' + answerId,
+      url: '/api/post/' + postId + '/answers/' + editedAnswer.answerId,
       data: editedAnswer
     });
   };
