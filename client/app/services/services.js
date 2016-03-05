@@ -152,15 +152,21 @@ angular.module('hackoverflow.services', [])
       data: newAnswer
     });
   };
-
-  // no edit answers for now. v2.
-  // var editAnswer = function(answerId) {
-  //   return $http({
-  //     method: 'PUT',
-  //     url: '/api/answers/' + answerId,
-  //     data:answer
-  //   });
-  // };
+  
+  var editAnswer = function(postId, answer) {
+    // var update = new Date();
+    var editedAnswer = {
+      answerId: answer._id,
+      body: answer.body,
+      updated: new Date()
+    };
+    // console.log('editedAnswer' + editedAnswer);
+      return $http({
+      method: 'PUT',
+      url: '/api/post/' + postId + '/answers/' + editedAnswer.answerId,
+      data: editedAnswer,
+    });
+  };
 
   var deleteAnswer = function(postId, answerId) {
     return $http({
@@ -173,7 +179,7 @@ angular.module('hackoverflow.services', [])
     getAnswers: getAnswers,
     createAnswer: createAnswer,
     getNumberOfAnswers: getNumberOfAnswers,
-    // editAnswer: editAnswer,
+    editAnswer: editAnswer,
     deleteAnswer: deleteAnswer
   };
 

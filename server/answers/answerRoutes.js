@@ -42,6 +42,6 @@ app.param('post', function (req, res, next, id) {
     app.get('/:post/answers', answerController.getAnswers);
     app.get('/:post/answersNumber', answerController.getNumberOfAnswers);
     app.post('/:post/answers', answerController.newAnswer);
-    // app.put('/:id', answerController.editAnswer);
+    app.put('/:post/answers/:answer', answerController.editAnswer);
     app.delete('/:post/answers/:answer', answerController.deleteAnswer);
 };

@@ -55,18 +55,22 @@ module.exports = {
       }
       response.json({ message: 'Successfully deleted' });
     });
+  },
+
+  editAnswer: function (request, response) {
+    Answer.findOneAndUpdate(
+      {_id: request.params.answer},
+      {
+        body: request.body.body,
+        created: request.body.updated
+      },
+      {new: true},
+      function(err, answer) {
+        if(err) {
+          return response.send(err);
+        }
+        response.json({message: 'Successfully updated!'});
+      });
   }
 
-  // TODO
-  //function ( request, response, next ) {
-  //   var answer = new Post.answers.push(request.body);
-
-  //   answer.save(function(err) {
-  //     if (err) {
-  //       return response.send(err);
-  //     }
-
-  //     response.send({ message: 'Post added!'});
-  //   });
-  // }
 };

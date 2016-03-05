@@ -42,7 +42,7 @@ require('./config/middleware.js')(app, express);
 
 //COMMENT OUT TO USE WITH MIDDLEWARE.JS
 
- //app.use(express.static(__dirname + '/../client'));
+// app.use(express.static(__dirname + '/../client'));
 
 
 // This redirects any GET requests that aren't for '/' or our the routes defined in

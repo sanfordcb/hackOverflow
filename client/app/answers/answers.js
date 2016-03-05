@@ -37,6 +37,11 @@ angular.module('hackoverflow.answers', [
     });
   };
 
+  $scope.editAnswer = function editAnswer(postId, answer) {
+    Answers.editAnswer(postId, answer);
+    $scope.getAnswers();
+  };
+
   $scope.deleteAnswer = function deleteAnswer(postId, answerId) {
     Answers.deleteAnswer(postId, answerId);
     $scope.getAnswers();
