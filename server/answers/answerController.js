@@ -61,11 +61,13 @@ module.exports = {
   editAnswer: function (request, response) {
     Answer.findOneAndUpdate(
       {_id: request.params.answer},
-      {body: request.body.body},
+      {
+        body: request.body.body
+      },
       {new: true},
       function(err, answer) {
         if(err) {
-          return console.err(err);
+          return response.send(err);
         }
         response.json({message: 'Successfully updated!'});
       });

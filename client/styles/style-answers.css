@@ -49,3 +49,9 @@
   font-weight: 800;
   color: #f00;
 }
+
+button {
+  padding: 0;
+  border: none;
+  background: none;
+}

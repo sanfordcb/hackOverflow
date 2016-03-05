@@ -29,25 +29,75 @@
     <br/><br/>
   </div>
 
-  <div class="answer" ng-repeat="answer in answers | filter:searchFor">
+<!-- <div class="answer" ng-repeat="answer in answers | filter:searchFor">
+        <p>{{answer.body}}</p>
+        <button ng-click="editable = 'answer'" ng-hide="editable === 'answer'">Edit</button>
+        <span ng-show="editable === 'answer'">
+          <form class='form-inline' ng-submit='editAnswer(post._id, answer)'>
+            <input type='text' name='answer' ng:required ng-model='answer.body'>
+            <button class='edit/delete' ng-click="editable === ''">Edit</button>
+            <button type='reset' Value='Reset' ng-click="editable = ''">Cancel</button>
+          </form>
+        </span> -->
+
+        <!-- <div class='answer' ng-repeat='answer in answers | filter:searchFor'>
+          <p ng-bind='answer.body'></p>
+          <button ng-click='showForm = true'>Edit</button>
+          <form class='form-inline'
+                ng-show='showForm' 
+                ng-submit='editAnswer(post._id, answer)'
+          >
+            <input type='text' name='answer' ng:required ng-model='answer.body'>
+            <button class='edit/delete' ng-click='showForm = false'>Submit</button>
+            <button type='reset' value='reset' ng-click='showForm = false'>Cancel</button>
+          </form> -->
+
+
+  <!-- <div class="answer" ng-repeat="answer in answers | filter:searchFor">
         <p ng-click="editable = 'answer'" ng-hide="editable === 'answer'">{{answer.body}}</p>
         <span ng-show="editable === 'answer'">
           <form class='form-inline' ng-submit='editAnswer(post._id, answer)'>
             <input type='text' name='answer' ng:required ng-model='answer.body'>
             <button class='edit/delete' ng-click="editable = ''">Edit</button>
-            </form>
-          </span>
-        <!-- <p ng-bind="answer.body"></p> -->
+          </form>
+        </span> -->
+        
 
+
+        <!-- <p ng-bind="answer.body"></p> -->
   <!-- <div>
       <div class="answer" ng-repeat="answer in answers | filter:searchFor">
         <p ng-bind="answer.body"></p> -->
-        <p class="info"><span ng-bind="answer.author"></span> -
+      <div class='answer' ng-repeat='answer in answers | filter:searchFor'>
+        <p ng-bind='answer.body'></p>
+        <p class="info" ng-show='answer.updated !== null'><span ng-bind="answer.
+        author"></span>
+          {{ TimeService.relativeDate(answer.updated) }}
+        </p>
+
+        <p class="info" ng-show='answer.updated === null'><span ng-bind="answer.author"></span>
           {{ TimeService.relativeDate(answer.created) }}
         </p>
 
         <div ng-if="theUser === answer.author">
           <span class="edit-delete" ng-click="deleteAnswer(post._id, answer._id)">DELETE</span>
+        </div>
+        <div ng-if="theUser === answer.author">
+          <span class='edit-delete' ng-click='showForm = true'>EDIT</span>
+          <!-- <button ng-click='showForm = true'>Edit</button> -->
+          <form class='form-inline'
+                ng-show='showForm' 
+                ng-submit='editAnswer(post._id, answer)'
+          >
+            <input type='text' name='answer' ng:required ng-model='answer.body'>
+            <button class='edit-delete' ng-click='showForm = false'>SUBMIT</button>
+            <button
+              class='edit-delete'
+              type='reset' 
+              Value='reset'
+              ng-click='showForm = false; getAnswers()'
+            >CANCEL</button>
+          </form>
         </div>
       </div>
   </div>

@@ -147,15 +147,17 @@ angular.module('hackoverflow.services', [])
   // no edit comments for now. v2.
   
   var editAnswer = function(postId, answer) {
+    // var update = new Date();
     var editedAnswer = {
       answerId: answer._id,
-      body: answer.body
+      body: answer.body,
+      updated: new Date()
     };
-    console.log('editedAnswer' + editedAnswer);
-    return $http({
+    // console.log('editedAnswer' + editedAnswer);
+      return $http({
       method: 'PUT',
       url: '/api/post/' + postId + '/answers/' + editedAnswer.answerId,
-      data: editedAnswer
+      data: editedAnswer,
     });
   };
 
