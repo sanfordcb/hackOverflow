@@ -60,6 +60,11 @@ angular.module('hackoverflow', [
         templateUrl: 'app/posts/posts.html',
         controller: 'PostsController'
       })
+    .state('post', {
+      url: '/:forum/:postId',
+      templateUrl: 'app/answers/answers.html',
+      controller: 'AnswersController'
+    })
     .state('add-post', {
       url: '/add-post',
       templateUrl: 'app/posts/add-post.html',
@@ -70,12 +75,6 @@ angular.module('hackoverflow', [
       url: '/edit-post',
       templateUrl: 'app/posts/add-post.html',
       controller: 'EditPostController'
-    })
-    .state('answers', {
-      params: {'post': null},
-      url: '/answers',
-      templateUrl: 'app/answers/answers.html',
-      controller: 'AnswersController'
     })
     .state('signin', {
       url: '/',
