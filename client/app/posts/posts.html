@@ -7,10 +7,6 @@
     filter: searchFor |
     filter: { forum: forum }">
     <div>
-        <i title="Up Votes" ng-click="changeVote(true)" class="fa fa-arrow-circle-up fa-2x" ng-class="{true:'up', false:''}[vote=='up']">up</i>
-        <br>
-        <i title="Down Votes" ng-click="changeVote(false)" class="fa fa-arrow-circle-down fa-2x"  ng-class="{true:'down', false:''}[vote=='down']">down</i>
-        {{post.votes}} {{votes}} votes
       </div>
     <a ui-sref="answers({post: post})">
       <h2 ng-bind="post.title"></h2></a>

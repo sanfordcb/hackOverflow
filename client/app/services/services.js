@@ -61,7 +61,7 @@ angular.module('hackoverflow.services', [])
   };
 
   var editPost = function(postId, title, body,
-    forum, author, created, tags) {
+    forum, author, created, tags, votes) {
     var editedPost = {
       postId: postId,
       title: title,
@@ -70,6 +70,7 @@ angular.module('hackoverflow.services', [])
       author: author,
       created: created, 
       tags: tags,
+      votes: votes
     };
     console.log('edited post: ', editedPost);
     return $http({
@@ -87,13 +88,18 @@ angular.module('hackoverflow.services', [])
     });
   };
 
-  var alterVotes = function(vote, total){
+  var alterVotes = function(vote, totalVotes, postId){
     if(vote) {
-      total++;
+      totalVotes++;
     } else {
-      total--;
+      totalVotes--;
     }
-    return total;
+    var editedPost = {votes: totalVotes};
+    return $http({
+      method: 'PUT',
+      url: '/api/post/' + postId + '/votes/',
+      data: editedPost
+    });
   }
 
   return {
