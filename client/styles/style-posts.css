@@ -28,3 +28,23 @@
 #posts-container {
   position: relative;
 }
+
+
+/* https://docs.angularjs.org/api/ngAnimate */
+.posts.ng-enter {
+  transition: 0.3s linear all;
+  opacity:0;
+}
+
+.posts.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+.posts.ng-leave {
+  transition: 0.3s linear all;
+  opacity:1;
+}
+
+.posts.ng-leave.ng-leave-active {
+  opacity:0;
+}
