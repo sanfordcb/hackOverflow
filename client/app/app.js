@@ -7,6 +7,7 @@ angular.module('hackoverflow', [
   'hackoverflow.answers',
   'ui.router',
   'ngRoute',
+  'ngAnimate',
   'ngSanitize',
   'ngTagsInput',
   'satellizer',
