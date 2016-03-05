@@ -14,6 +14,15 @@ angular.module('hackoverflow.answers', [
   $scope.newAnswerBody = '';
   $scope.theUser = $rootScope.user;
   $scope.TimeService = TimeService;
+  $scope.votes = $scope.post.votes;
+  $scope.postId = $scope.post._id;
+
+  $scope.getData = function getData(postId) {
+    Posts.getPosts(postId).then(function(result) {
+      $scope.post = result.data;
+      $scope.getAnswers();
+    })
+  }
 
   $scope.getData = function getData(postId) {
     Posts.getPosts(postId).then(function(result) {
@@ -42,6 +51,12 @@ angular.module('hackoverflow.answers', [
     Answers.createAnswer($scope.post._id, $scope.newAnswerBody, $rootScope.user, new Date());
     $scope.newAnswerBody = '';
     $scope.getAnswers();
+  };
+
+  $scope.changeVote = function(vote) {
+    Posts.alterVotes(vote, $scope.votes, $scope.postId).then(function(newVotes){
+      $scope.votes = newVotes;
+    })
   };
 
   $scope.getData($scope.postId);

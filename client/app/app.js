@@ -9,7 +9,7 @@ angular.module('hackoverflow', [
   'ngRoute',
   'ngAnimate',
   'ngSanitize',
-  'ngTagsInput',
+  //'ngTagsInput',
   'satellizer',
   'hackoverflow.auth'
 ])
