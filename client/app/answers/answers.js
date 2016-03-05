@@ -15,7 +15,6 @@ angular.module('hackoverflow.answers', [
   $scope.theUser = $rootScope.user;
   $scope.TimeService = TimeService;
   $scope.votes = $scope.post.votes;
-  $scope.postId = $scope.post._id;
 
   $scope.getData = function getData(postId) {
     Posts.getPosts(postId).then(function(result) {
