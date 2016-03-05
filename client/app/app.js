@@ -5,6 +5,7 @@ angular.module('hackoverflow', [
   'hackoverflow.add-post',
   'hackoverflow.edit-post',
   'hackoverflow.answers',
+  'hackoverflow.signout',
   'ui.router',
   'ngRoute',
   'ngAnimate',
@@ -81,6 +82,11 @@ angular.module('hackoverflow', [
       url: '/',
       templateUrl: 'app/auth/signin.html',
       controller: 'AuthController'
+    })
+    .state('signout', {
+      url: '/signout',
+      templateUrl: 'app/auth/signout.html',
+      controller: 'SignoutController'
     })
     .state('signup', {
       url: '/signup',
