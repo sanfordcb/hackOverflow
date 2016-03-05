@@ -17,7 +17,7 @@ angular.module('hackoverflow.auth', [
           .then(function(response){
             $rootScope.user = response.data.displayName;
           });
-        $state.go('posts');
+        $state.go('forums');
       })
       .catch(function(response) {
         console.error('Cannot connect to GitHub: ', response);
