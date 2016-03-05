@@ -50,8 +50,9 @@
   color: #f00;
 }
 
-button {
+button.edit-delete {
   padding: 0;
   border: none;
   background: none;
 }
+

@@ -136,16 +136,6 @@ angular.module('hackoverflow.services', [])
     });
   };
   
-  // no edit answers for now. v2.
-  // var editAnswer = function(answerId) {
-  //   return $http({
-  //     method: 'PUT',
-  //     url: '/api/answers/' + answerId,
-  //     data:answer
-  //   });
-  // };
-  // no edit comments for now. v2.
-  
   var editAnswer = function(postId, answer) {
     // var update = new Date();
     var editedAnswer = {

@@ -57,12 +57,12 @@ module.exports = {
     });
   },
 
-  // TODO
   editAnswer: function (request, response) {
     Answer.findOneAndUpdate(
       {_id: request.params.answer},
       {
-        body: request.body.body
+        body: request.body.body,
+        created: request.body.updated
       },
       {new: true},
       function(err, answer) {
@@ -73,14 +73,4 @@ module.exports = {
       });
   }
 
-  //   var answer = new Post.answers.push(request.body);
-
-  //   answer.save(function(err) {
-  //     if (err) {
-  //       return response.send(err);
-  //     }
-
-  //     response.send({ message: 'Post added!'});
-  //   });
-  // }
 };

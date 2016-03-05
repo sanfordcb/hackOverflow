@@ -31,7 +31,6 @@ angular.module('hackoverflow.answers', [
     console.log(postId, answer);
     Answers.editAnswer(postId, answer);
     $scope.getAnswers();
-    console.log('$scope answers' + $scope.answers);
   };
 
   $scope.deleteAnswer = function deleteAnswer(postId, answerId) {
