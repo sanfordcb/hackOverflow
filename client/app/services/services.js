@@ -157,6 +157,7 @@ angular.module('hackoverflow.services', [])
   var editAnswer = function(postId, answer) {
     var editedAnswer = {};
     angular.extend(editedAnswer, answer);
+    editedAnswer.created = new Date();
     return $http({
       method: 'PUT',
       url: '/api/post/' + postId + '/answers/' + answer._id,
