@@ -21,14 +21,14 @@ angular.module('hackoverflow.answers', [
       $scope.post = result.data;
       $scope.getAnswers();
     })
-  }
+  };
 
-  $scope.getData = function getData(postId) {
-    Posts.getPosts(postId).then(function(result) {
-      $scope.post = result.data;
-      $scope.getAnswers();
-    })
-  }
+  // $scope.getData = function getData(postId) {
+  //   Posts.getPosts(postId).then(function(result) {
+  //     $scope.post = result.data;
+  //     $scope.getAnswers();
+  //   })
+  // }
 
   $scope.getAnswers = function getAnswers() {
     Answers.getAnswers($scope.post._id).then(function(result) {
@@ -38,7 +38,16 @@ angular.module('hackoverflow.answers', [
 
   $scope.editAnswer = function editAnswer(postId, answer) {
     Answers.editAnswer(postId, answer);
-    $scope.getAnswers();
+  };
+
+  $scope.upVote = function upVote(postId, answer) {
+    Answers.upVote(postId, answer);
+    
+  };
+
+  $scope.downVote = function downVote(postId, answer) {
+    Answers.downVote(postId, answer);
+    
   };
 
   $scope.deleteAnswer = function deleteAnswer(postId, answerId) {

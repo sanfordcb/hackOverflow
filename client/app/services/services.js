@@ -143,7 +143,8 @@ angular.module('hackoverflow.services', [])
       postId: postId,
       body: body,
       author: author,
-      created: created
+      created: created,
+      votes: 0
     };
     console.log('new answer: ', newAnswer);
     return $http({
@@ -154,16 +155,11 @@ angular.module('hackoverflow.services', [])
   };
   
   var editAnswer = function(postId, answer) {
-    // var update = new Date();
-    var editedAnswer = {
-      answerId: answer._id,
-      body: answer.body,
-      updated: new Date()
-    };
-    // console.log('editedAnswer' + editedAnswer);
-      return $http({
+    var editedAnswer = {};
+    angular.extend(editedAnswer, answer);
+    return $http({
       method: 'PUT',
-      url: '/api/post/' + postId + '/answers/' + editedAnswer.answerId,
+      url: '/api/post/' + postId + '/answers/' + answer._id,
       data: editedAnswer,
     });
   };
@@ -175,12 +171,36 @@ angular.module('hackoverflow.services', [])
     });
   };
 
+  var upVote = function(postId, answer) {
+    answer.votes++;
+    var editedAnswer = {};
+    angular.extend(editedAnswer, answer);
+    return $http({
+      method: 'PUT',
+      url: '/api/post/' + postId + '/answers/' + answer._id,
+      data: editedAnswer
+    });
+  };
+
+  var downVote = function(postId, answer) {
+    answer.votes--;
+    var editedAnswer = {};
+    angular.extend(editedAnswer, answer);
+    return $http({
+      method: 'PUT',
+      url: '/api/post/' + postId + '/answers/' + answer._id,
+      data: editedAnswer
+    });
+  };
+
   return {
     getAnswers: getAnswers,
     createAnswer: createAnswer,
     getNumberOfAnswers: getNumberOfAnswers,
     editAnswer: editAnswer,
-    deleteAnswer: deleteAnswer
+    deleteAnswer: deleteAnswer,
+    upVote: upVote,
+    downVote: downVote
   };
 
 })
