@@ -57,20 +57,23 @@ module.exports = {
     });
   },
 
-  editAnswer: function (request, response) {
-    Answer.findOneAndUpdate(
-      {_id: request.params.answer},
-      {
-        body: request.body.body,
-        created: request.body.updated
-      },
-      {new: true},
-      function(err, answer) {
+  updateAnswer: function(request, response) {
+    Answer.findOne({_id: request.params.answer}, function(err, answer) {
+      if(err) {
+        return response.send(err);
+      }
+
+      for(prop in request.body) {
+        answer[prop] = request.body[prop]; 
+      }
+      
+      answer.save(function(err) {
         if(err) {
           return response.send(err);
         }
-        response.json({message: 'Successfully updated!'});
+        response.json({message: 'Update successful!'});
       });
+    });
   }
 
 };

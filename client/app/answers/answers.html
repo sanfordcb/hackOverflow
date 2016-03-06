@@ -36,6 +36,19 @@
 
       <div class='answer' ng-repeat='answer in answers | filter:searchFor'>
         <p ng-bind='answer.body'></p>
+        <img 
+          title='Upvote'
+          ng-click="upVote(post._id, answer)"
+          src='../assets/images/uparrow.png'
+        ><img
+          title='Downvote'
+          ng-click="downVote(post._id, answer)"
+          src='../assets/images/downarrow.png'
+        >
+        <div ng-bind='answer.votes'>  
+          {{ answer.votes }}
+        </div>
+        
         <p class="info"><span ng-bind="answer.author"></span>
           {{ TimeService.relativeDate(answer.created) }}
         </p>

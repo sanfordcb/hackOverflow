@@ -7,7 +7,8 @@ var AnswerSchema = new mongoose.Schema({
   created: {
     type: Date,
     default: Date.now
-  }
+  },
+  votes: Number
 });
 
 module.exports = mongoose.model('Answer', AnswerSchema);
