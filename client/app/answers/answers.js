@@ -42,12 +42,12 @@ angular.module('hackoverflow.answers', [
 
   $scope.upVote = function upVote(postId, answer) {
     Answers.upVote(postId, answer);
-    
+
   };
 
   $scope.downVote = function downVote(postId, answer) {
     Answers.downVote(postId, answer);
-    
+
   };
 
   $scope.deleteAnswer = function deleteAnswer(postId, answerId) {
@@ -61,7 +61,7 @@ angular.module('hackoverflow.answers', [
   };
 
   $scope.submit = function () {
-    Answers.createAnswer($scope.post._id, $scope.newAnswerBody, $rootScope.user, new Date());
+    Answers.createAnswer($scope.post._id, $scope.newAnswerBody, $rootScope.userProfile.name, new Date());
     $scope.newAnswerBody = '';
     $scope.getAnswers();
   };
