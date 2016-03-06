@@ -15,7 +15,7 @@ angular.module('hackoverflow', [
   'hackoverflow.auth'
 ])
 
-.run(function($rootScope, $auth) {
+.run(function($rootScope, $auth, $location) {
 
   $rootScope.$on("$routeChangeStart",
     function (event, next, current) {
@@ -25,6 +25,12 @@ angular.module('hackoverflow', [
       //let everything know we need to restore state
       $rootScope.$broadcast('restorestate');
       sessionStorage.restorestate = false;
+    }
+  });
+
+  $rootScope.$on("$stateChangeStart", function (event, next, current) {
+    if (!$auth.isAuthenticated()) {
+      $location.path('/signin');
     }
   });
 
@@ -50,7 +56,7 @@ angular.module('hackoverflow', [
 
   $locationProvider.html5Mode(true);
 
-  $urlRouterProvider.otherwise('signin');
+  $urlRouterProvider.otherwise('forums');
   $stateProvider
     .state('forums', {
       url: '/forums',
@@ -79,7 +85,7 @@ angular.module('hackoverflow', [
       controller: 'EditPostController'
     })
     .state('signin', {
-      url: '/',
+      url: '/signin',
       templateUrl: 'app/auth/signin.html',
       controller: 'AuthController'
     })
