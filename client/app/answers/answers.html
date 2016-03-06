@@ -56,6 +56,7 @@
             {{ TimeService.relativeDate(answer.created) }}
           </p>
 
+
           <div ng-if="theUser === answer.author">
             <span class="edit-delete" ng-click="deleteAnswer(post._id, answer._id)">DELETE</span>
           </div>
