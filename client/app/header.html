@@ -10,8 +10,11 @@
 
       <nav>
         <a ui-sref="add-post">Ask a Question</a>
-
-        <a ui-sref="signout">Logout</a> ({{$root.userProfile.name}})
+        <a ui-sref="signout">Logout</a>
+        <a  ui-sref="profile">
+          {{$root.userProfile.name}}
+          <img src="{{$root.userProfile.picture}}" width="35" />
+        </a>
       </nav>
 
   </div>
