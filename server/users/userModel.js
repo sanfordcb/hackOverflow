@@ -6,7 +6,8 @@ var UserSchema = new mongoose.Schema({
   password: { type: String, select: false },
   displayName: String,
   picture: String,
-  github: String
+  github: String,
+  ghLogin: String
   // photoUrl: String,
   // created: Date,
   // posts : [{ type: Schema.Types.ObjectId, ref: 'Posts'}],
