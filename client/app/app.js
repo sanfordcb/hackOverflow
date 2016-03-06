@@ -6,6 +6,7 @@ angular.module('hackoverflow', [
   'hackoverflow.edit-post',
   'hackoverflow.answers',
   'hackoverflow.signout',
+  'hackoverflow.profile',
   'ui.router',
   'ngRoute',
   'ngAnimate',
@@ -109,6 +110,12 @@ angular.module('hackoverflow', [
       url: '/signup',
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
+    })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: 'app/profile/profile.html',
+      controller: 'ProfileController',
+      resolve: {loginRequired: loginRequired}
     });
 
     // https://github.com/sahat/satellizer/blob/master/examples%2Fclient%2Fapp.js#L99
