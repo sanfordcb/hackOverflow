@@ -27,7 +27,7 @@ module.exports = function ( app, express ) {
   app.use('/api/users', userRouter); // use userRouter for all user requests
   app.use('/api/post', postRouter); // use postRouter for all user post requests
   app.use('/api/post', answerRouter); // use answerRouter for all use answer requests
-  app.use('/api/forum', forumRouter); 
+  app.use('/api/forum', forumRouter);
 
   // authentication middleware used to decode token and made available on the request
 // app.use('someroute/someroute', helpers.decode);
@@ -120,7 +120,6 @@ app.post('/auth/github', function(req, res) {
     client_secret: config.GITHUB_SECRET,
     redirect_uri: req.body.redirectUri
   };
-
   // Step 1. Exchange authorization code for access token.
   request.get({ url: accessTokenUrl, qs: params }, function(err, response, accessToken) {
     accessToken = qs.parse(accessToken);
@@ -128,7 +127,6 @@ app.post('/auth/github', function(req, res) {
 
     // Step 2. Retrieve profile information about the current user.
     request.get({ url: userApiUrl, qs: accessToken, headers: headers, json: true }, function(err, response, profile) {
-
       // Step 3a. Link user accounts.
       if (req.header('Authorization')) {
         User.findOne({ github: profile.id }, function(err, existingUser) {
@@ -144,6 +142,7 @@ app.post('/auth/github', function(req, res) {
             user.github = profile.id;
             user.picture = user.picture || profile.avatar_url;
             user.displayName = user.displayName || profile.name;
+            user.ghLogin = profile.login
             user.save(function() {
               var token = createJWT(user);
               res.send({ token: token });
@@ -161,6 +160,7 @@ app.post('/auth/github', function(req, res) {
           user.github = profile.id;
           user.picture = profile.avatar_url;
           user.displayName = profile.name;
+            user.ghLogin = profile.login
           user.save(function() {
             var token = createJWT(user);
             res.send({ token: token });

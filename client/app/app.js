@@ -45,7 +45,7 @@ angular.module('hackoverflow', [
   $stateProvider, $locationProvider, $authProvider) {
 
   $authProvider.github({
-    clientId: 'b09b1334afed657344e5'
+    clientId: 'f052f1dfb8b8dceb5a69'
   });
 
   $locationProvider.html5Mode(true);
