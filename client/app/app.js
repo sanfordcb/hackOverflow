@@ -6,6 +6,7 @@ angular.module('hackoverflow', [
   'hackoverflow.edit-post',
   'hackoverflow.answers',
   'hackoverflow.signout',
+  'hackoverflow.profile',
   'ui.router',
   'ngRoute',
   'ngAnimate',
@@ -15,7 +16,7 @@ angular.module('hackoverflow', [
   'hackoverflow.auth'
 ])
 
-.run(function($rootScope, $auth, $location) {
+.run(function($rootScope, $auth, $location, $state, Auth) {
 
   $rootScope.$on("$routeChangeStart",
     function (event, next, current) {
@@ -29,8 +30,15 @@ angular.module('hackoverflow', [
   });
 
   $rootScope.$on("$stateChangeStart", function (event, next, current) {
-    if (!$auth.isAuthenticated()) {
-      $location.path('/signin');
+    // always add our userProfile data to the rootScope if it isn't already there
+    if ($rootScope.userProfile === undefined) {
+      Auth.getUser()
+        .then(function(response){
+          $rootScope.userProfile = {
+            name: response.data.displayName,
+            picture: response.data.picture
+          }
+        });
     }
   });
 
@@ -61,28 +69,33 @@ angular.module('hackoverflow', [
     .state('forums', {
       url: '/forums',
       templateUrl: 'app/forums/forums.html',
-      controller: 'ForumsController'
+      controller: 'ForumsController',
+      resolve: {loginRequired: loginRequired}
     })
       .state('forums.posts', {
         url: '/:forum',
         templateUrl: 'app/posts/posts.html',
-        controller: 'PostsController'
+        controller: 'PostsController',
+        resolve: {loginRequired: loginRequired}
       })
     .state('post', {
       url: '/:forum/:postId',
       templateUrl: 'app/answers/answers.html',
-      controller: 'AnswersController'
+      controller: 'AnswersController',
+      resolve: {loginRequired: loginRequired}
     })
     .state('add-post', {
       url: '/add-post',
       templateUrl: 'app/posts/add-post.html',
-      controller: 'AddPostController'
+      controller: 'AddPostController',
+      resolve: {loginRequired: loginRequired}
     })
     .state('edit-post', {
       params: {'post': null},
       url: '/edit-post',
       templateUrl: 'app/posts/add-post.html',
-      controller: 'EditPostController'
+      controller: 'EditPostController',
+      resolve: {loginRequired: loginRequired}
     })
     .state('signin', {
       url: '/signin',
@@ -98,5 +111,22 @@ angular.module('hackoverflow', [
       url: '/signup',
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
+    })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: 'app/profile/profile.html',
+      controller: 'ProfileController',
+      resolve: {loginRequired: loginRequired}
     });
+
+    // https://github.com/sahat/satellizer/blob/master/examples%2Fclient%2Fapp.js#L99
+    function loginRequired($q, $location, $auth) {
+      var deferred = $q.defer();
+      if ($auth.isAuthenticated()) {
+        deferred.resolve();
+      } else {
+        $location.path('/signin');
+      }
+      return deferred.promise;
+    }
 });
