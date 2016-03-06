@@ -35,7 +35,8 @@ angular.module('hackoverflow', [
       Auth.getUser()
         .then(function(response){
           $rootScope.userProfile = {
-            name: response.data.displayName
+            name: response.data.displayName,
+            picture: response.data.picture
           }
         });
     }
