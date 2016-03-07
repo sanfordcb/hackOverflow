@@ -82,16 +82,13 @@
         </div>
 
         <!-- COMMENTS -->
-        <div class="commentContainer">
-          <form class="newComment" ng-submit="newComment(newCommentBody, answer._id)">
-            <input ng-model="newCommentBody" placeholder="Post a comment..."></input>
-          </form>
-
+        <div class="comment-container">
           <div ng-repeat="comment in comments" ng-if="answer._id == comment.answer">
             <comment-directive comment="comment" post-id="postId" answer="answer" time-service="TimeService"></comment-directive>
           </div>
-        </div>
-
+          <form class="newComment" ng-submit="newComment(newCommentBody, answer._id)">
+            <input ng-model="newCommentBody" placeholder="Post a comment..."></input>
+          </form>
       </div>
   </div>
 
