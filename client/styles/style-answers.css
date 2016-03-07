@@ -56,3 +56,12 @@ button.edit-delete {
   background: none;
 }
 
+.tag {
+  color: #0f96dd;
+  background-color: #f5f5f5;
+  font-weight: 300;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
