@@ -255,7 +255,8 @@ angular.module('hackoverflow.services', [])
     scope: {
       comment: '=',
       postId: '=',
-      answer: '='
+      answer: '=',
+      TimeService: '=timeService'
     }
   }
 })

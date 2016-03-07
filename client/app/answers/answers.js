@@ -13,7 +13,7 @@ angular.module('hackoverflow.answers', [
   $scope.postId = $stateParams.postId;
   $scope.newAnswerBody = '';
   $scope.newCommentBody = '';
-  $scope.theUser = $rootScope.user || 'anon';
+  $scope.theUser = $rootScope.user;
   $scope.TimeService = TimeService;
   $scope.votes = $scope.post.votes;
   $scope.comments = commentService.comments;
@@ -82,7 +82,7 @@ angular.module('hackoverflow.answers', [
   };
 
   $scope.newComment = function(newCommentBody, answerId) {
-    Comments.newComment(newCommentBody, $scope.theUser, answerId, $scope.postId, new Date());
+    Comments.newComment(newCommentBody, $rootScope.userProfile.name, answerId, $scope.postId, new Date());
     $scope.newCommentBody = '';
     $scope.getComments();
   };

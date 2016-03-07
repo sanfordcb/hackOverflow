@@ -86,7 +86,7 @@
           </form>
 
           <div ng-repeat="comment in comments" ng-if="answer._id == comment.answer">
-            <comment-directive comment="comment" post-id="postId" answer="answer"></comment-directive>
+            <comment-directive comment="comment" post-id="postId" answer="answer" time-service="TimeService"></comment-directive>
           </div>
         </div>
 

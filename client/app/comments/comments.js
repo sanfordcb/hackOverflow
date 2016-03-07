@@ -6,8 +6,9 @@ angular.module('hackoverflow.comments', [
 .config(function ($httpProvider, $urlRouterProvider, $stateProvider) {
 })
 
-.controller('CommentController', function($scope, $rootScope, $stateParams, $state, Comments, commentService) {
+.controller('CommentController', function($scope, $rootScope, $stateParams, $state, Comments, commentService, TimeService) {
   $scope.postId = $stateParams.postId;
+  $scope.TimeService = TimeService;
 
   $scope.comments = commentService.comments;
   $scope.$watch('comments', function() {

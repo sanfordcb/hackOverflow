@@ -73,20 +73,12 @@ angular.module('hackoverflow', [
       controller: 'ForumsController',
       resolve: {loginRequired: loginRequired}
     })
-<<<<<<< 9fcb692bc8113c4b35b09f330904c138ddc88f10
       .state('forums.posts', {
         url: '/:forum',
         templateUrl: 'app/posts/posts.html',
         controller: 'PostsController',
         resolve: {loginRequired: loginRequired}
       })
-=======
-    .state('forums.posts', {
-      url: '/:forum',
-      templateUrl: 'app/posts/posts.html',
-      controller: 'PostsController'
-    })
->>>>>>> Setup file framework for adding comments.
     .state('post', {
       url: '/:forum/:postId',
       templateUrl: 'app/answers/answers.html',
