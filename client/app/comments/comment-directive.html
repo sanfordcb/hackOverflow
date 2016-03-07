@@ -1,0 +1,6 @@
+<div class="comment-template">
+  <p>{{ comment.body }}</p>
+  <p><span>- {{ comment.author }} - </span>
+  {{ TimeService.relativeDate(comment.created) }}
+  </p>
+</div>

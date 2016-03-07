@@ -7,11 +7,12 @@ angular.module('hackoverflow', [
   'hackoverflow.answers',
   'hackoverflow.signout',
   'hackoverflow.profile',
+  'hackoverflow.comments',
   'ui.router',
   'ngRoute',
   'ngAnimate',
   'ngSanitize',
-  //'ngTagsInput',
+  'ngTagsInput',
   'satellizer',
   'hackoverflow.auth'
 ])
@@ -96,6 +97,11 @@ angular.module('hackoverflow', [
       templateUrl: 'app/posts/add-post.html',
       controller: 'EditPostController',
       resolve: {loginRequired: loginRequired}
+    })
+    .state('comments', {
+      url: '/comments',
+      templateUrl: 'app/comments/comments.html',
+      controller: 'CommentController'
     })
     .state('signin', {
       url: '/signin',

@@ -1,6 +1,6 @@
 angular.module('hackoverflow.services', [])
 
-// POSTS
+// --- POSTS ---
 
 .factory('Posts', function($http) {
 
@@ -113,7 +113,7 @@ angular.module('hackoverflow.services', [])
   };
 })
 
-// ANSWERS
+// --- ANSWERS ---
 
 .factory('Answers', function ( $http ) {
 
@@ -203,10 +203,65 @@ angular.module('hackoverflow.services', [])
     upVote: upVote,
     downVote: downVote
   };
-
 })
 
-// AUTHENTICATION
+// --- COMMENTS ---
+
+.factory('Comments', function($http, commentService) {
+  var getComments = function(postId) {
+    return $http({
+      method: 'GET',
+      url: '/api/post/' + postId + '/comments'
+    })
+    .then(function(response) {
+      console.log('COMMENTS', response.data);
+      commentService.comments = response.data;
+      return response.data;
+    });
+  };
+
+  var newComment = function(body, author, answerId, postId, created) {
+    var comment = {
+      'body': body,
+      'author': author,
+      'answer': answerId,
+      'post': postId, 
+      'created': created
+    };
+    return $http({
+      method: 'POST', 
+      url: '/api/post/' + postId + '/comments',
+      data: comment
+    })
+    .then(function(response) {
+      return response.data;
+    })
+  };
+
+  return {
+    getComments: getComments,
+    newComment: newComment
+  };
+})
+
+.service('commentService', function() {
+  this.comments = [];
+})
+
+.directive('commentDirective', function() {
+  return {
+    templateUrl: 'app/comments/comment-directive.html',
+    replace: true,
+    scope: {
+      comment: '=',
+      postId: '=',
+      answer: '=',
+      TimeService: '=timeService'
+    }
+  }
+})
+
+// --- AUTHENTICATION ---
 
 .factory('Auth', function($http, $location, $window) {
 

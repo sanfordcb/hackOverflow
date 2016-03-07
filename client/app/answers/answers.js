@@ -7,14 +7,16 @@ angular.module('hackoverflow.answers', [
 })
 
 .controller('AnswersController',
-  function ($scope, $rootScope, $stateParams, $state, Answers, Posts, TimeService) {
+  function ($scope, $rootScope, $stateParams, $state, Answers, Posts, Comments, commentService, TimeService) {
   $scope.answers = [];
   $scope.post = {};
   $scope.postId = $stateParams.postId;
   $scope.newAnswerBody = '';
+  $scope.newCommentBody = '';
   $scope.theUser = $rootScope.user;
   $scope.TimeService = TimeService;
   $scope.votes = $scope.post.votes;
+  $scope.comments = commentService.comments;
 
   $scope.getData = function getData(postId) {
     Posts.getPosts(postId).then(function(result) {
@@ -72,5 +74,19 @@ angular.module('hackoverflow.answers', [
     })
   };
 
+  $scope.getComments = function() {
+    Comments.getComments($scope.postId)
+    .then(function(){
+      $scope.comments = commentService.comments;
+    });
+  };
+
+  $scope.newComment = function(newCommentBody, answerId) {
+    Comments.newComment(newCommentBody, $rootScope.userProfile.name, answerId, $scope.postId, new Date());
+    $scope.newCommentBody = '';
+    $scope.getComments();
+  };
+
   $scope.getData($scope.postId);
+  $scope.getComments();
 });
