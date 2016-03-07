@@ -18,7 +18,7 @@
     </div>
 
     <div class="answer-post-tags" ng-repeat="tag in post.tags">
-      <span><u>{{tag.text}}</u></span>
+      Tags: <span class="tag">{{tag.text}}</span>
     </div>
 
     <p class="info">
@@ -39,7 +39,7 @@
       <div ng-repeat="answer in answers | orderBy: '-votes'" >
         <div class="answer">
           <p ng-bind='answer.body'></p>
-          <img 
+          <img
             title='Upvote'
             ng-click="upVote(post._id, answer)"
             src='../assets/images/uparrow.png'
@@ -48,10 +48,10 @@
             ng-click="downVote(post._id, answer)"
             src='../assets/images/downarrow.png'
           >
-          <div ng-bind='answer.votes'>  
+          <div ng-bind='answer.votes'>
             {{ answer.votes }}
           </div>
-          
+
           <p class="info"><span ng-bind="answer.author"></span>
             {{ TimeService.relativeDate(answer.created) }}
           </p>
@@ -62,18 +62,18 @@
           <div ng-if="theUser === answer.author">
             <span class='edit-delete' ng-click='showForm = true'>EDIT</span>
             <form class='form-inline'
-                  ng-show='showForm' 
+                  ng-show='showForm'
                   ng-submit='editAnswer(post._id, answer)'
             >
               <input type='text' name='answer' ng:required ng-model='answer.body'>
-              <button 
+              <button
                 class='edit-delete'
                 ng-click='showForm = false'
                 type='submit'
               >SUBMIT</button>
               <button
                 class='edit-delete'
-                type='reset' 
+                type='reset'
                 Value='reset'
                 ng-click='showForm = false; getAnswers()'
               >CANCEL</button>
