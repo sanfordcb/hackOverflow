@@ -68,10 +68,8 @@ angular.module('hackoverflow.answers', [
     $scope.getAnswers();
   };
 
-  $scope.changeVote = function(vote) {
-    Posts.alterVotes(vote, $scope.votes, $scope.postId).then(function(newVotes){
-      $scope.votes = newVotes;
-    })
+  $scope.changeVote = function(vote, post) {
+    Posts.alterVotes(vote, post);
   };
 
   $scope.getComments = function() {

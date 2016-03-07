@@ -63,25 +63,25 @@ module.exports = {
 
   },
 
-  changeVote: function(request, response){
-    Post.findOne({_id:request.params.post}, function(err, post){
-      if (err) {
-        return response.send(err);
-      }
+  // changeVote: function(request, response){
+  //   Post.findOne({_id:request.params.post}, function(err, post){
+  //     if (err) {
+  //       return response.send(err);
+  //     }
 
-      for (var prop in request.body) {
-        if(prop === 'votes'){
-          post[prop] = request.body[prop]
-        }
-      }
-      post.save(function (err) {
-        if(err) {
-          return response.send(err);
-        }
-        response.json({ message: 'Post updated!'});
-      })
-    });
-  },
+  //     for (var prop in request.body) {
+  //       if(prop === 'votes'){
+  //         post[prop] = request.body[prop]
+  //       }
+  //     }
+  //     post.save(function (err) {
+  //       if(err) {
+  //         return response.send(err);
+  //       }
+  //       response.json({ message: 'Post updated!'});
+  //     })
+  //   });
+  // },
   
   // deletes post and it answer children
   deletePost: function (request, response, next) {
