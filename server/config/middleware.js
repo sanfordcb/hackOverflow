@@ -10,7 +10,20 @@ var jwt = require('jwt-simple');
 var moment = require('moment');
 var colors = require('colors');
 
-var config = require('./config');
+if(process.env['TOKEN_SECRET']) {
+  var tokenSecret = process.env['TOKEN_SECRET'];  
+} else {
+  var config = require('./config');
+  var tokenSecret = config.TOKEN_SECRET;
+}
+
+if(process.env['GITHUB_SECRET']) {
+  var githubSecret = process.env['GITHUB_SECRET'];  
+} else {
+  var config = require('./config');
+  var githubSecret = config.GITHUB_SECRET;
+}
+
 
 module.exports = function ( app, express ) {
   var userRouter = express.Router();
@@ -49,7 +62,7 @@ module.exports = function ( app, express ) {
 
     var payload = null;
     try {
-      payload = jwt.decode(token, config.TOKEN_SECRET);
+      payload = jwt.decode(token, tokenSecret);
     }
     catch (err) {
       return res.status(401).send({ message: err.message });
@@ -74,7 +87,7 @@ function createJWT(user) {
     iat: moment().unix(),
     exp: moment().add(14, 'days').unix()
   };
-  return jwt.encode(payload, config.TOKEN_SECRET);
+  return jwt.encode(payload, tokenSecret);
 }
 
 /*
@@ -118,7 +131,7 @@ app.post('/auth/github', function(req, res) {
   var params = {
     code: req.body.code,
     client_id: req.body.clientId,
-    client_secret: config.GITHUB_SECRET,
+    client_secret: githubSecret,
     redirect_uri: req.body.redirectUri
   };
   // Step 1. Exchange authorization code for access token.
@@ -135,7 +148,7 @@ app.post('/auth/github', function(req, res) {
             return res.status(409).send({ message: 'There is already a GitHub account that belongs to you' });
           }
           var token = req.header('Authorization').split(' ')[1];
-          var payload = jwt.decode(token, config.TOKEN_SECRET);
+          var payload = jwt.decode(token, tokenSecret);
           User.findById(payload.sub, function(err, user) {
             if (!user) {
               return res.status(400).send({ message: 'User not found' });
