@@ -8,7 +8,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "postinstall": "bower install"
   },
   "author": "",
   "license": "ISC",
